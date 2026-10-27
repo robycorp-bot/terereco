@@ -1,0 +1,17 @@
+node_modules/
+dist/
+dist-local/
+work/
+.openai/
+.env
+.env.*
+!.env.example
+*.log
+# Infraestrutura anterior preservada localmente, fora do site atual.
+db/
+drizzle/
+worker/
+build.py
+drizzle.config.ts
+scripts/build.sh
+scripts/validate-artifact.mjs

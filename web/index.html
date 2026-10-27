@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1713">
+  <meta name="description" content="Entre no universo do tereré. Uma experiência imersiva com ervas, marcas reais, equipamentos, raízes guaranis e o ritual da água gelada.">
+  <title>Meu Terereco — Sinta a natureza. Viva a roda.</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/folhas.jpg" as="image">
+  <link rel="stylesheet" href="/style.css?v=4">
+  <script src="/app.js?v=5" defer></script>
+  <script type="module" src="/scene.js?v=4"></script>
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="leaf" viewBox="0 0 40 40"><path d="M33 5C15 4 4 12 7 25c2 8 13 11 20 2 5-6 5-14 6-22Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 33 17-20M15 25l-1-9m7 3 7-1" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="m12 20-8-8C-2 6 6-1 12 6c6-7 14 0 8 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  </defs></svg>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <div class="loader" id="loader" role="status" aria-label="Preparando a experiência">
+    <div class="loader-top"><span>MEU TERERECO®</span><span>UMA PAUSA PARA SENTIR.</span></div>
+    <div class="loader-center"><div class="loader-orbit"><svg><use href="#leaf"/></svg></div><span class="loader-phrase">Da folha.<br>À <i>sua roda.</i></span></div>
+    <div class="loader-bottom"><span id="loadLabel">DESPERTANDO A NATUREZA</span><strong><span id="loadPercent">00</span><sup>%</sup></strong><div class="loader-track"><i id="loadBar"></i></div><button id="skipLoader">Entrar agora ↗</button></div>
+  </div>
+  <div class="reading-progress" aria-hidden="true"><i></i></div>
+  <header class="header">
+    <a class="logo" href="#inicio" aria-label="Meu Terereco, início"><svg><use href="#leaf"/></svg><span>meu<br><b>terereco.</b></span></a>
+    <nav class="desktop-nav" aria-label="Principal"><a href="#origem">A origem</a><a href="#explorar">O universo</a><a href="#marcas">As marcas</a><a href="#ritual">O ritual</a></nav>
+    <div class="header-actions"><button class="icon-button favorites-open" aria-label="Abrir meus favoritos"><svg><use href="#heart"/></svg><span id="favoriteCount">0</span></button><button class="header-cta" data-open-quiz>Encontre sua erva <svg><use href="#arrow"/></svg></button><button class="menu-button" id="menuButton" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button></div>
+  </header>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile" hidden><a href="#origem"><small>01</small>A origem ↗</a><a href="#explorar"><small>02</small>O universo ↗</a><a href="#marcas"><small>03</small>As marcas ↗</a><a href="#ritual"><small>04</small>O ritual ↗</a><button data-open-quiz>Descobrir minha erva →</button></nav>
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="hero-botanical" aria-hidden="true"></div><div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-topline"><span><i class="live-dot"></i> NATUREZA EM ESTADO VIVO</span><span>BRASIL · PARAGUAI · A SUA RODA</span></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span>01 /</span> MUITO MAIS QUE ÁGUA E ERVA.</p>
+        <h1>DESACELERE.<br>SINTA O <em>verde.</em></h1>
+        <p class="hero-description">O gelo encontra a erva. A conversa encontra tempo.<br>Entre no universo de um ritual que se vive junto.</p>
+        <div class="hero-ctas"><a class="button lime" href="#explorar">Explorar o universo <svg><use href="#arrow"/></svg></a><a class="story-link" href="#origem"><span>↘</span> De onde tudo vem</a></div>
+        <div class="hero-note"><span class="tiny-leaf"><svg><use href="#leaf"/></svg></span><p>Raízes ancestrais.<br><b>Um novo jeito de sentir.</b></p></div>
+      </div>
+      <div class="hero-stage" id="stage">
+        <div class="stage-aura" aria-hidden="true"></div>
+        <span class="stage-word" aria-hidden="true">TERERÉ</span>
+        <img class="scene-fallback" src="/assets/copo-couro.jpg" alt="Copo real de couro caramelo com bomba telada preta" width="800" height="800">
+        <canvas id="terereCanvas" aria-label="Guampa e bomba em 3D. Arraste para girar ou use as setas do teclado." tabindex="0" role="img"></canvas>
+        <div class="hotspot spot-one"><i></i><span>ERVA-MATE<br><b>Da terra para o seu copo</b></span></div>
+        <div class="hotspot spot-two"><i></i><span>GELO + ÁGUA<br><b>O encontro perfeito</b></span></div>
+        <div class="scene-caption"><span id="sceneHint">↔ ARRASTE PARA EXPLORAR EM 3D</span><button id="sceneReset" aria-label="Restaurar posição do objeto 3D">↺</button></div>
+        <div class="material-switch" role="group" aria-label="Acabamento do modelo 3D"><span>SEU ESTILO</span><button class="swatch active" data-material="olive" aria-label="Acabamento verde oliva" aria-pressed="true"></button><button class="swatch leather" data-material="leather" aria-label="Acabamento couro caramelo" aria-pressed="false"></button><button class="swatch steel" data-material="steel" aria-label="Acabamento inox" aria-pressed="false"></button></div>
+      </div>
+      <div class="hero-bottom"><a href="#origem"><span class="scroll-symbol">↓</span> ROLE PARA SENTIR</a><span>UM RITUAL. INFINITAS CONEXÕES.</span><button class="motion-toggle" id="motionToggle" aria-pressed="false">Ⅱ <span>Pausar movimento</span></button></div>
+    </section>
+    <div class="brand-ribbon"><span>MARCAS QUE FAZEM PARTE DA RODA</span><div class="ribbon-track" aria-hidden="true"><div>TROT’S <i>✳</i> CHACAL <i>✳</i> BLACK ERVA <i>✳</i> KURUPÍ <i>✳</i> BARÃO <i>✳</i> SELECTA <i>✳</i> PAJARITO <i>✳</i></div><div>TROT’S <i>✳</i> CHACAL <i>✳</i> BLACK ERVA <i>✳</i> KURUPÍ <i>✳</i> BARÃO <i>✳</i> SELECTA <i>✳</i> PAJARITO <i>✳</i></div></div></div>
+    <section class="origin section-pad" id="origem">
+      <div class="section-index reveal"><span>01 — AS RAÍZES</span><span>ILEX PARAGUARIENSIS</span></div>
+      <div class="origin-layout">
+        <div class="origin-visual reveal"><img src="/assets/folhas.jpg" alt="Folhas reais de erva-mate em Campo Ramón, Misiones, Argentina" loading="lazy" width="960" height="1440"><div class="photo-tag"><span class="live-dot"></span> CAMPO RAMÓN, MISIONES · ARGENTINA</div><div class="botanical-name">Ilex<br><i>paraguariensis.</i></div><div class="tree-inset"><img src="/assets/arvore-inteira.jpg" alt="Árvore real de Ilex paraguariensis no Jardim Botânico de Buenos Aires" width="960" height="720" loading="lazy"><span>A ÁRVORE DA ERVA-MATE</span></div></div>
+        <div class="origin-copy reveal"><span class="eyebrow dark">TUDO COMEÇA COM UMA ÁRVORE.</span><h2>Antes do gole,<br>existe uma<br><em>floresta.</em></h2><p>A erva-mate é uma árvore nativa da América do Sul. Suas folhas e ramos finos dão origem à erva que chega à guampa. Água fria, saberes antigos e tempo compartilhado fazem o resto.</p><div class="origin-facts"><div><svg><use href="#leaf"/></svg><span><b>Da mesma planta, outros rituais.</b>Tereré, chimarrão e chá-mate têm a erva-mate como ponto de partida.</span></div><div><span class="fact-circle">↗</span><span><b>Um saber que atravessa gerações.</b>O universo do tereré tem raízes na cultura guarani e na vida cotidiana do Paraguai.</span></div></div><a class="underlink" href="#historia">Conheça essa história <svg><use href="#arrow"/></svg></a></div>
+      </div>
+      <div class="botanical-strip reveal"><div><span>01</span> FOLHA VIVA</div><i></i><div><span>02</span> ERVA PREPARADA</div><i></i><div><span>03</span> ÁGUA GELADA</div><i></i><div><span>04</span> RODA FORMADA</div></div>
+    </section>
+    <section class="explore section-pad" id="explorar">
+      <div class="section-index reveal"><span>02 — CURIOSIDADE SERVIDA GELADA</span><span>CURADORIA MEU TERERECO</span></div>
+      <div class="section-heading reveal"><div><h2>Seu próximo<br><em>primeiro gole.</em></h2></div><div><p>Ervas, copos e bombas de verdade.<br>Explore os detalhes. Descubra o seu estilo.</p><button class="underlink" data-open-quiz>Qual erva combina comigo? <svg><use href="#arrow"/></svg></button></div></div>
+      <div class="catalog-toolbar reveal"><div class="filter-tabs" role="group" aria-label="Filtrar catálogo"><button class="active" data-filter="all" aria-pressed="true">Tudo <span>06</span></button><button data-filter="erva" aria-pressed="false">Ervas</button><button data-filter="copo" aria-pressed="false">Copos & guampas</button><button data-filter="bomba" aria-pressed="false">Bombas</button></div><span id="resultsCount" aria-live="polite">06 descobertas</span></div>
+      <div id="productGrid" class="product-grid"></div>
+      <p class="catalog-foot">Escolha por perfil, aroma e preferência. O melhor tereré é o que combina com você. <span>FOTOS DOS PRODUTOS REAIS ↗</span></p>
+    </section>
+    <section class="manifesto" aria-label="O tempo da roda"><div class="manifesto-leaves" aria-hidden="true"></div><p class="eyebrow reveal">NO TEMPO DO MUNDO, UMA PAUSA.</p><h2 class="reveal">TEM COISA QUE<br>SÓ FAZ SENTIDO<br><em>na roda.</em></h2><span class="manifesto-bottom">SEM PRESSA. COM PRESENÇA.</span><div class="manifesto-ring" aria-hidden="true"><svg><use href="#leaf"/></svg></div></section>
+    <section class="history section-pad" id="historia">
+      <div class="section-index reveal"><span>03 — MEMÓRIA QUE CIRCULA</span><span>ANCESTRAL. E SEMPRE PRESENTE.</span></div>
+      <div class="history-layout"><div class="history-intro reveal"><h2>Uma história<br>que não cabe<br>em uma <em>guampa.</em></h2><figure><img src="/assets/colheita.jpg" alt="Colheita real de erva-mate na floresta paraguaia" loading="lazy" width="1333" height="1999"><figcaption>Colheita de erva-mate no Paraguai.<br>Fotografia: ShapeShifter / Wikimedia Commons.</figcaption></figure></div>
+      <div class="timeline">
+        <article class="reveal"><span class="timeline-node"></span><p class="timeline-era">RAÍZES GUARANIS</p><h3>O conhecimento vem da terra.</h3><p>O tereré reúne a erva-mate e saberes tradicionais de origem guarani. No Paraguai, a cultura do pohã ñana integra plantas, preparo e convivência em um patrimônio transmitido entre gerações.</p></article>
+        <article class="reveal"><span class="timeline-node"></span><p class="timeline-era">ENTRE FRONTEIRAS</p><h3>A roda não pede passaporte.</h3><p>A tradição encontrou diferentes jeitos de fazer. No Brasil, sobretudo em Mato Grosso do Sul, o tereré se tornou parte do encontro cotidiano: uma conversa, uma térmica e tempo para estar perto.</p></article>
+        <article class="reveal"><span class="timeline-node"></span><p class="timeline-era">2020 · RECONHECIMENTO MUNDIAL</p><h3>Um patrimônio vivo.</h3><p>A UNESCO inscreveu as práticas e saberes tradicionais do tereré na cultura do pohã ñana, bebida ancestral guarani no Paraguai, na Lista Representativa do Patrimônio Cultural Imaterial da Humanidade.</p><a href="https://ich.unesco.org/en/RL/practices-and-traditional-knowledge-of-terere-in-the-culture-of-poha-nana-a-traditional-drink-of-paraguay-01603" target="_blank" rel="noopener noreferrer">Conhecer o registro da UNESCO ↗</a></article>
+        <article class="reveal"><span class="timeline-node"></span><p class="timeline-era">HOJE · A SUA VEZ</p><h3>Tradição que continua em você.</h3><p>Novos sabores, novos materiais, novas rodas. A forma muda. O convite para compartilhar um momento continua.</p></article>
+      </div></div>
+    </section>
+    <section class="brands section-pad" id="marcas"><div class="section-index reveal"><span>04 — NOMES DA NOSSA RODA</span><span>DESCUBRA. COMPARE. EXPERIMENTE.</span></div><div class="section-heading reveal"><h2>Várias marcas.<br><em>Seu próprio gosto.</em></h2><p>Conheça fabricantes brasileiros e paraguaios.<br>Abra uma marca para explorar suas referências.</p></div><div class="brand-grid" id="brandGrid"></div></section>
+    <section class="ritual section-pad" id="ritual"><div class="section-index reveal"><span>05 — FAÇA O SEU RITUAL</span><span>ÁGUA GELADA. CABEÇA LEVE.</span></div><div class="ritual-layout"><div class="ritual-art reveal"><img src="/assets/copo-couro.jpg" alt="Guampa de couro caramelo com bomba metálica telada, fotografia de produto real" loading="lazy" width="800" height="800"><div class="ritual-orbit" aria-hidden="true"></div><span>PRONTO PARA O PRIMEIRO GOLE?</span></div><div class="ritual-content reveal"><h2>Menos pressa.<br><em>Mais ritual.</em></h2><div class="ritual-steps">
+        <details name="ritual" open><summary><span>01</span> Escolha a erva <i>+</i></summary><p>Comece por uma erva indicada para tereré. Tradicional, mentolada ou cítrica: o perfil é uma escolha sua. Observe a moagem e as instruções da embalagem.</p></details>
+        <details name="ritual"><summary><span>02</span> Prepare a guampa <i>+</i></summary><p>Coloque a quantidade de erva indicada pelo fabricante e incline o copo para acomodá-la em um lado. Reserve espaço para a água e posicione a bomba.</p></details>
+        <details name="ritual"><summary><span>03</span> Entre com água gelada <i>+</i></summary><p>Despeje devagar na área livre, espere a erva absorver e complete aos poucos. O gelo fica na térmica para manter a água fria durante o ritual.</p></details>
+        <details name="ritual"><summary><span>04</span> Encontre o seu tempo <i>+</i></summary><p>Evite mexer na bomba depois de posicioná-la. Reabasteça com calma, aproveite o sabor e descubra como sua erva muda ao longo dos goles.</p></details>
+      </div><button class="underlink" data-open-quiz>Monte seu ponto de partida <svg><use href="#arrow"/></svg></button></div></div></section>
+    <section class="final-cta"><p class="eyebrow reveal">A NATUREZA FEZ A PARTE DELA.</p><h2 class="reveal">Agora é com <em>você.</em></h2><button class="button lime reveal" data-open-quiz>Encontrar minha erva <svg><use href="#arrow"/></svg></button><span class="final-outline" aria-hidden="true">TERERECO</span></section>
+  </main>
+  <footer><div class="footer-top"><a class="logo" href="#inicio"><svg><use href="#leaf"/></svg><span>meu<br><b>terereco.</b></span></a><p>Da natureza para a roda.<br>Da roda para a vida.</p><a class="back-top" href="#inicio" aria-label="Voltar ao início">↑</a></div><div class="footer-bottom"><span>© 2026 MEU TERERECO · UM GUIA INDEPENDENTE</span><div><button id="replayLoader">Rever abertura</button><button id="creditsButton">Fontes & créditos</button></div><span>FEITO PARA SENTIR.</span></div></footer>
+  <dialog class="detail-dialog" id="detailDialog" aria-labelledby="detailTitle"><button class="dialog-close" data-close-dialog aria-label="Fechar detalhes">×</button><div id="detailContent"></div></dialog>
+  <dialog class="quiz-dialog" id="quizDialog" aria-labelledby="quizTitle"><button class="dialog-close" data-close-dialog aria-label="Fechar descoberta">×</button><div id="quizContent"></div></dialog>
+  <dialog class="favorites-dialog" id="favoritesDialog" aria-labelledby="favoritesTitle"><button class="dialog-close" data-close-dialog aria-label="Fechar favoritos">×</button><p class="eyebrow dark">SUA CURADORIA</p><h2 id="favoritesTitle">Sua <em>roda.</em></h2><p class="favorites-intro">Guarde os produtos que despertaram sua curiosidade.</p><div id="favoritesList"></div></dialog>
+  <dialog class="credits-dialog" id="creditsDialog" aria-labelledby="creditsTitle"><button class="dialog-close" data-close-dialog aria-label="Fechar créditos">×</button><p class="eyebrow dark">AS REFERÊNCIAS IMPORTAM.</p><h2 id="creditsTitle">Fontes & <em>créditos.</em></h2><div class="credits-copy"><h3>História e botânica</h3><p><a href="https://ich.unesco.org/en/RL/practices-and-traditional-knowledge-of-terere-in-the-culture-of-poha-nana-a-traditional-drink-of-paraguay-01603" target="_blank" rel="noopener">UNESCO · Tereré e pohã ñana, inscrição de 2020</a><br><a href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1115755/1/2019IvarCFSecagem.pdf" target="_blank" rel="noopener">Embrapa · Ilex paraguariensis e seus usos</a></p><p><a href="https://www.turismo.ms.gov.br/conheca-mato-grosso-do-sul/" target="_blank" rel="noopener">Fundtur MS · Tereré na cultura sul-mato-grossense</a></p><h3>Fotografias botânicas</h3><p><a href="https://commons.wikimedia.org/wiki/File:Misiones_-_Hojas_de_Yerba_Mate.jpg" target="_blank" rel="noopener">Folhas em Misiones · Leandro Kibisz</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.<br><a href="https://commons.wikimedia.org/wiki/File:Harvesting_rainforest_grown_yerba_mate_in_Paraguay.jpg" target="_blank" rel="noopener">Colheita no Paraguai · ShapeShifter</a> · <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a>.<br><a href="https://commons.wikimedia.org/wiki/File:Ilex_paraguariensis_21.jpg" target="_blank" rel="noopener">Árvore · Wikimedia Commons</a> (licença e autor na página de origem). Fotografias exibidas com recorte e tratamento de cor via CSS; adaptações botânicas mantêm a respectiva licença.</p><p><a href="https://commons.wikimedia.org/wiki/File:Ilex_paraguariensis_at_Buenos_Aires_Botanical_Garden.jpg" target="_blank" rel="noopener">Árvore inteira em Buenos Aires · Mx. Granger</a> · CC0. <a href="https://commons.wikimedia.org/wiki/File:Ilex_paraguariensis_21.jpg" target="_blank" rel="noopener">Folhas de fundo · Andrés González</a> · CC BY-SA 4.0.</p><h3>Produtos e marcas</h3><p>Fotografia da bomba TROT’S: <a href="https://trots.com.br/products/bomba-chata-preto-fosco" target="_blank" rel="noopener">loja oficial TROT’S</a>. Fotografias das ervas TROT’S, Chacal, Black Erva e dos copos: <a href="https://tereredubaum.com.br/" target="_blank" rel="noopener">Tererédubaum</a>. Direitos das imagens e marcas pertencem aos respectivos titulares. Os links de cada item apontam para a fonte consultada. Esta é uma curadoria editorial independente.</p><h3>Experiência 3D</h3><p>Guampa e bomba modeladas para esta experiência, inspiradas em equipamentos de tereré. A cena não é uma digitalização de produto de marca. Renderização local com Three.js, licença MIT.</p></div></dialog>
+  <div class="toast" id="toast" role="status"></div>
+</body></html>

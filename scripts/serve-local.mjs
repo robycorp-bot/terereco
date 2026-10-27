@@ -1,0 +1,11 @@
+import http from 'node:http';
+import {readFile,stat} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const root=path.join(project,process.argv.includes('--dist')?'dist-local':'web');
+const port=Number(process.env.PORT||4174);
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.ttf':'font/ttf'};
+const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,'http://127.0.0.1');const name=decodeURIComponent(url.pathname);const file=path.resolve(root,'.'+(name==='/'?'/index.html':name));if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end('Acesso negado');return;}if(!(await stat(file)).isFile())throw Error('not found');res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(await readFile(file));}catch{res.writeHead(404);res.end('Página não encontrada');}});
+server.on('error',error=>{if(error.code==='EADDRINUSE')console.error('A porta '+port+' já está em uso. Abra http://127.0.0.1:'+port+'/ ou escolha PORT.');else console.error(error.message);process.exitCode=1;});
+server.listen(port,'127.0.0.1',()=>console.log('Meu Terereco está em http://127.0.0.1:'+port+'/'));
