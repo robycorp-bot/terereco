@@ -25,8 +25,12 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check web/app.js
+          node --check web/catalog-data.js
+          node --check web/catalog-photos.js
           node --check web/scene.js
           node --check scripts/build-static.mjs
+      - name: Verify catalog content and offline images
+        run: node scripts/validate-catalog.mjs
       - name: Build static files
         run: node scripts/build-static.mjs
       - name: Verify deploy entry points
@@ -34,6 +38,9 @@ jobs:
           test -s dist-local/index.html
           test -s dist-local/style.css
           test -s dist-local/app.js
+          test -s dist-local/catalog-data.js
+          test -s dist-local/catalog-photos.js
+          test -s dist-local/guide.css
           test -s dist-local/scene.js
           test -s dist-local/vendor/three.module.js
       - uses: actions/upload-artifact@v4
