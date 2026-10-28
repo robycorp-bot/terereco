@@ -7,11 +7,5 @@
     "start": "node scripts/serve-local.mjs",
     "build": "node scripts/build-static.mjs",
     "preview": "node scripts/serve-local.mjs --dist"
-  },
-  "dependencies": {
-    "drizzle-orm": "0.45.2"
-  },
-  "devDependencies": {
-    "drizzle-kit": "0.31.10"
   }
 }

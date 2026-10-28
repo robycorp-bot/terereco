@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: meu-terereco
+    runtime: static
+    buildCommand: node scripts/build-static.mjs
+    staticPublishPath: ./dist-local
+    autoDeployTrigger: off
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

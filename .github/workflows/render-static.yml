@@ -1,0 +1,72 @@
+name: Validate and deploy static site to Render
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: render-static-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check web/app.js
+          node --check web/scene.js
+          node --check scripts/build-static.mjs
+      - name: Build static files
+        run: node scripts/build-static.mjs
+      - name: Verify deploy entry points
+        run: |
+          test -s dist-local/index.html
+          test -s dist-local/style.css
+          test -s dist-local/app.js
+          test -s dist-local/scene.js
+          test -s dist-local/vendor/three.module.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: meu-terereco-static
+          path: dist-local/
+          retention-days: 7
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy for the validated commit
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          COMMIT_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo '::error::Configure the repository secret RENDER_DEPLOY_HOOK_URL with the hook from the Render static site settings.'
+            exit 1
+          fi
+          case "$RENDER_DEPLOY_HOOK_URL" in
+            https://api.render.com/deploy/*) ;;
+            *) echo '::error::Invalid Render deploy hook host or path.'; exit 1 ;;
+          esac
+          if [[ "$RENDER_DEPLOY_HOOK_URL" == *\?* ]]; then separator='&'; else separator='?'; fi
+          status=$(curl --silent --output /dev/null --write-out '%{http_code}' \
+            --max-time 60 --request POST \
+            "${RENDER_DEPLOY_HOOK_URL}${separator}ref=${COMMIT_SHA}")
+          if [ "$status" != 200 ] && [ "$status" != 202 ]; then
+            echo "::error::Render rejected the deploy request (HTTP $status)."
+            exit 1
+          fi
+          echo 'Render accepted the deploy request. Check its dashboard for the publication result.'
